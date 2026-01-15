@@ -1,0 +1,22 @@
+# --------------------
+# OS / editor junk
+# --------------------
+.DS_Store
+Thumbs.db
+
+# --------------------
+# Docker / runtime data
+# --------------------
+srv/database/
+srv/wordpress/
+
+# --------------------
+# Dependencies (future-proof)
+# --------------------
+node_modules/
+vendor/
+
+# --------------------
+# Env files
+# --------------------
+.env
