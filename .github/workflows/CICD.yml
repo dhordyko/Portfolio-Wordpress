@@ -1,4 +1,4 @@
-name: Portfolio Deploy
+name: Portfolio Starter Setup
 
 on:
   push:
@@ -28,16 +28,16 @@ jobs:
           mkdir -p themes plugins mu-plugins
           zip -r wpcontent.zip themes plugins mu-plugins
 
-      - name: Upload WordPress and content zips (SCP)
+      - name: Upload WordPress and content zips (FTP)
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.SERVER_HOST }}
+          server: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_SSH_PASSWORD }}
-          port: ${{ secrets.SSH_PORT }}
-          source: "wordpress.zip,wpcontent.zip"
-          target: "/htdocs/"
-          overwrite: true
+          port: 21
+          protocol: ftp
+          local-dir: ./
+          server-dir: /htdocs/
 
       - name: Enable Maintenance Mode
         uses: appleboy/scp-action@v0.1.7
