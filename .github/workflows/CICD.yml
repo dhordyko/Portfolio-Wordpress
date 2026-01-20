@@ -28,16 +28,17 @@ jobs:
           mkdir -p themes plugins mu-plugins
           zip -r wpcontent.zip themes plugins mu-plugins
 
-      - name: Upload WordPress and content zips (FTP)
-        uses: appleboy/scp-action@v0.1.7
+      - name: Deploy via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          password: ${{ secrets.SERVER_SSH_PASSWORD }}
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           protocol: ftp
-          local-dir: ./
-          server-dir: /htdocs/
+          local-dir: ./ # your project root
+          server-dir: /htdocs/ # where the site lives
+          source: "wordpress.zip,wpcontent.zip"
 
       - name: Enable Maintenance Mode
         uses: appleboy/scp-action@v0.1.7
