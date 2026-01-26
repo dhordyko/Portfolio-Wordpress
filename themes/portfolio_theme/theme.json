@@ -1,0 +1,174 @@
+{
+  "version": 2,
+  "settings": {
+    "layout": {
+      "contentSize": "840px",
+      "wideSize": "1100px"
+    },
+
+    "color": {
+      "defaultPalette": false,
+      "custom": true,
+      "customGradient": true,
+
+      "palette": [
+        { "name": "Background", "slug": "background", "color": "#0f0715" },
+        { "name": "Surface Card", "slug": "surface-card", "color": "#340E50" },
+        { "name": "Primary Purple", "slug": "primary-purple", "color": "#9d4dff" },
+        { "name": "Highlight Color", "slug": "highlight", "color": "#F50013" },
+        { "name": "Text Heading", "slug": "text-heading", "color": "#ffffff" },
+        { "name": "Primary Grey", "slug": "primary-grey", "color": "#cccce4" },
+        { "name": "Border Color", "slug": "border", "color": "#8750f7" },
+        { "name": "Secondary Grey", "slug": "secondary-grey", "color": "#99a1af" },
+         {
+          "name": "Gradient Blue",
+          "slug": "gradient-blue",
+          "color": "#99a2af"
+          
+        },
+           {
+          "name": "Main Gradient",
+          "slug": "main-gradient",
+          "color": "#99a3af"
+       
+        },
+          {
+          "name": "Primary Gradient",
+          "slug": "primary-gradient",
+          "color": "#99a4af"
+        
+        }
+      ],
+
+      "gradients": [
+        {
+          "name": "Gradient Blue",
+          "slug": "gradient-blue-2",
+          "gradient": "linear-gradient(90deg, #9810FA 0%, #4F39F6 100%)"
+        },
+        {
+          "name": "Main Gradient",
+          "slug": "main-gradient-2",
+          "gradient": "linear-gradient(90deg, #C27AFF 0%, #7C86FF 100%)"
+        },
+        {
+          "name": "Primary Gradient",
+          "slug": "primary-gradient-2",
+          "gradient": "linear-gradient(180deg, #7C46E9 0%, #2A1454 100%)"
+        }
+      ]
+    },
+
+    "typography": {
+      "lineHeight": true,
+      "fontFamilies": [
+        {
+          "fontFamily": "Urbanist, sans-serif",
+          "slug": "urbanist",
+          "name": "Urbanist"
+        }
+      ],
+      "fontSizes": [
+        { "name": "XS", "slug": "xs", "size": "0.875rem" },
+        { "name": "S", "slug": "s", "size": "1rem" },
+        { "name": "M", "slug": "m", "size": "1.6rem" },
+        { "name": "L", "slug": "l", "size": "1.25rem" },
+        { "name": "XL", "slug": "xl", "size": "1.6rem" },
+        { "name": "2XL", "slug": "2xl", "size": "2rem" },
+        { "name": "3XL", "slug": "3xl", "size": "3rem" },
+        { "name": "4XL", "slug": "4xl", "size": "4rem" },
+        { "name": "5XL", "slug": "5xl", "size": "5rem" },
+        { "name": "6XL", "slug": "6xl", "size": "6rem" }
+      ],
+      "customFontSize": false
+    },
+
+    "spacing": {
+      "margin": true,
+      "padding": true,
+      "units": ["px", "em", "rem", "vh", "vw"],
+
+      "spacingSizes": [
+        { "name": "0", "slug": "0", "size": "0px" },
+        { "name": "1", "slug": "1", "size": "8px" },
+        { "name": "2", "slug": "2", "size": "16px" },
+        { "name": "3", "slug": "3", "size": "24px" },
+        { "name": "4", "slug": "4", "size": "32px" },
+        { "name": "5", "slug": "5", "size": "40px" },
+        { "name": "6", "slug": "6", "size": "48px" },
+        { "name": "7", "slug": "7", "size": "56px" },
+        { "name": "8", "slug": "8", "size": "64px" }
+      ]
+    },
+
+    "border": {
+      "color": true,
+      "radius": true,
+      "width": true,
+      "style": true
+    },
+
+    "shadow": {
+      "presets": [
+        {
+          "name": "Soft",
+          "slug": "soft",
+          "shadow": "0 10px 30px rgba(0,0,0,0.25)"
+        },
+        {
+          "name": "Glow Purple",
+          "slug": "glow-purple",
+          "shadow": "0 0 40px rgba(157,77,255,0.35)"
+        }
+      ]
+    }
+  },
+
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--background)",
+      "text": "var(--wp--preset--color--primary-grey)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--urbanist)",
+      "lineHeight": "1.6"
+    },
+    "elements": {
+      "link": {
+        "color": { "text": "var(--wp--preset--color--primary-purple)" }
+      }
+    }
+  },
+
+  "styles": {
+    "blocks": {
+      "core/paragraph": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--m)"
+        }
+      },
+      "core/heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--urbanist)"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--text-heading)"
+        }
+      },
+      "core/button": {
+        "border": {
+          "radius": "16px"
+        },
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--s)",
+          "fontWeight": "600"
+        }
+      },
+      "core/group": {
+        "spacing": {
+          "blockGap": "16px"
+        }
+      }
+    }
+  }
+}

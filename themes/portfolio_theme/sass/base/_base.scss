@@ -1,20 +1,69 @@
 /* Typography
 --------------------------------------------- */
-@import "typography/typography";
+@import 'typography/typography';
 
 /* Elements
 --------------------------------------------- */
-@import "elements/body";
-@import "elements/hr";
-@import "elements/lists";
-@import "elements/media";
-@import "elements/tables";
+@import 'elements/body';
+@import 'elements/hr';
+@import 'elements/lists';
+@import 'elements/media';
+@import 'elements/tables';
 
 /* Links
 --------------------------------------------- */
-@import "elements/links";
+@import 'elements/links';
 
 /* Forms
 --------------------------------------------- */
-@import "elements/buttons";
-@import "elements/fields";
+@import 'elements/buttons';
+@import 'elements/fields';
+
+/* Gradient Blue */
+.has-gradient-blue-color {
+  background: -webkit-linear-gradient(90deg, #9810fa 0%, #4f39f6 100%);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+  color: transparent;
+}
+
+/* Main Gradient */
+.has-main-gradient-color {
+  background: linear-gradient(90deg, #c27aff 0%, #7c86ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+  color: transparent;
+}
+
+.has-primary-gradient-color {
+  background: linear-gradient(180deg, #7c46e9 0%, #2a1454 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+  color: transparent;
+}
+
+.has-gradient-blue-color.wp-block-heading,
+.has-main-gradient-color.wp-block-heading,
+.has-primary-gradient-gradient.wp-block-heading {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Button with gradients */
+.has-gradient-blue-color.wp-block-button__link,
+.has-main-gradient-color.wp-block-button__link,
+.has-primary-gradient-color.wp-block-button__link {
+  background-clip: unset;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  color: white;
+  border: none;
+}

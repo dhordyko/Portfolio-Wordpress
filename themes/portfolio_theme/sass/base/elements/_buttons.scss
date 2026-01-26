@@ -1,21 +1,50 @@
 button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
-	border: 1px solid;
-	border-color: $color__border-button;
-	border-radius: 3px;
-	background: $color__background-button;
-	color: rgba(0, 0, 0, 0.8);
-	line-height: 1;
-	padding: 0.6em 1em 0.4em;
+input[type='button'],
+input[type='reset'],
+input[type='submit'] {
+  border: 1px solid;
+  // border-color: $color__border-button;
+  border-radius: 3px;
+  // background: $color__background-button;
+  color: rgba(0, 0, 0, 0.8);
+  line-height: 1;
+  padding: 0.6em 1em 0.4em;
 
-	&:hover {
-		border-color: $color__border-button-hover;
-	}
+  &:hover {
+    // border-color: $color__border-button-hover;
+  }
 
-	&:active,
-	&:focus {
-		border-color: $color__border-button-focus;
-	}
+  &:active,
+  &:focus {
+    // border-color: $color__border-button-focus;
+  }
+}
+
+//Kadence default button (theme primary)
+
+.wp-block-kadence-advancedbtn .kb-button.primary-button {
+  display: flex;
+  min-width: 190px;
+  min-height: 50px;
+  font-size: 1rem;
+  border-radius: 50px;
+
+  border: 1px solid $color__link;
+  background: transparent;
+
+  .kt-btn-inner-text {
+    font-size: 1.6rem;
+  }
+
+  .kb-svg-icon-wrap {
+    color: inherit;
+  }
+
+  &:hover {
+    color: #fff;
+
+    .kb-svg-icon-wrap {
+      color: inherit;
+    }
+  }
 }

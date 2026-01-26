@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "blocks-portfolio/block-projects",
+  "version": "0.1.0",
+  "title": "Projects",
+  "category": "widgets",
+  "icon": "star-filled",
+  "description": "Display a projects card with icon, percentage, and label with lightbox popup.",
+  "example": {},
+  "supports": {
+    "html": false
+  },
+  "attributes": {},
+  "textdomain": "blocks-portfolio",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "viewScript": "file:./view.js"
+}

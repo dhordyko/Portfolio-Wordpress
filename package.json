@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "@fontsource/urbanist": "^5.2.7",
+    "aos": "^2.3.4",
+    "glightbox": "^3.3.1",
+    "isotope-layout": "^3.0.6",
+    "swiper": "^12.0.3",
+    "typed.js": "^2.1.0"
+  },
+  "devDependencies": {
+    "cpx": "^1.5.0"
+  }
+}

@@ -1,109 +1,70 @@
-.main-navigation {
-	display: block;
-	width: 100%;
+#masthead {
+  display: flex;
 
-	ul {
-		display: none;
-		list-style: none;
-		margin: 0;
-		padding-left: 0;
+  flex-direction: column;
+  position: fixed;
+  top: 10%;
+  left: 50px;
+  bottom: 0;
+  width: 300px;
+  overflow-y: auto;
+  z-index: 997;
+  padding: 0 15px;
+  justify-content: start;
+  transition: 0.3s ease-in-out;
 
-		ul {
-			box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
-			float: left;
-			position: absolute;
-			top: 100%;
-			left: -999em;
-			z-index: 99999;
+  // Content Navigation layout styles
+  #site-navigation {
+    display: flex;
+    background-color: $color__background-body;
+    border-radius: 10px;
+    border: 1px solid rgba(173, 70, 255, 0.5);
+    box-shadow: $box-shadow-default;
+    max-width: 300px;
+    min-height: 470px;
+    padding: 35px 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    /* stylelint-disable-next-line rule-empty-line-before */
+    #primary-menu {
+      margin-left: 0;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
 
-			ul {
-				left: -999em;
-				top: 0;
-			}
+      .menu-item {
+        @extend %menu-button;
+      }
+    }
 
-			li {
+    .socials {
+      display: flex;
+      gap: 1.6rem;
 
-				&:hover > ul,
-				&.focus > ul {
-					display: block;
-					left: auto;
-				}
-			}
+      a {
+        display: flex;
+        min-height: 40px;
+        min-width: 40px;
+        border-radius: 50%;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid $color__link;
 
-			a {
-				width: 200px;
-			}
+        &:hover {
+          background: $color__gradient-blue;
 
-			:hover > a,
-			.focus > a {
-			}
+          svg path {
+            fill: #fff;
+          }
+        }
+      }
+    }
+  }
 
-			a:hover,
-			a.focus {
-			}
-		}
-
-		li:hover > ul,
-		li.focus > ul {
-			left: auto;
-		}
-	}
-
-	li {
-		position: relative;
-
-		&:hover > a,
-		&.focus > a {
-		}
-	}
-
-	a {
-		display: block;
-		text-decoration: none;
-	}
-
-	.current_page_item > a,
-	.current-menu-item > a,
-	.current_page_ancestor > a,
-	.current-menu-ancestor > a {
-	}
-}
-
-/* Small menu. */
-.menu-toggle,
-.main-navigation.toggled ul {
-	display: block;
-}
-
-@media screen and (min-width: 37.5em) {
-
-	.menu-toggle {
-		display: none;
-	}
-
-	.main-navigation ul {
-		display: flex;
-	}
-}
-
-.comment-navigation,
-.posts-navigation,
-.post-navigation {
-
-	.site-main & {
-		margin: 0 0 1.5em;
-	}
-
-	.nav-links {
-		display: flex;
-	}
-
-	.nav-previous {
-		flex: 1 0 50%;
-	}
-
-	.nav-next {
-		text-align: end;
-		flex: 1 0 50%;
-	}
+  // Toggel Button styles
+  .menu-toggle {
+    display: none;
+  }
 }

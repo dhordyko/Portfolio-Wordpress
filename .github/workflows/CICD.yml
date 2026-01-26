@@ -1,4 +1,4 @@
-name: Portfolio Starter Setup (FTP only)
+name: Portfolio Starter Setup (FTP only) # Download wordpres from offcicla repository;
 
 on:
   push:

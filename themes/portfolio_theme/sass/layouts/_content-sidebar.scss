@@ -1,27 +1,27 @@
-.site {
-	display: grid;
-	grid-template-columns: auto ($size__site-sidebar);
-	grid-template-areas:
-		"header header"
-		"main sidebar"
-		"footer footer";
+main#primary {
+  width: calc(100% - 370px);
+  margin-left: auto;
+  overflow: hidden;
+
+  &::before {
+    content: url(./sass/imgs/wordpress-logo.svg);
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &::after {
+    content: url(./sass/imgs/note.svg);
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 300px;
+  }
 }
 
-.site-header {
-	grid-area: header;
+.entry-content {
+  max-width: 1250px;
+  width: 100%;
+  margin: 0 auto;
 }
-
-.site-main {
-	grid-area: main;
-	overflow: hidden; /* Resolves issue with <pre> elements forcing full width. */
-}
-
-.widget-area {
-	grid-area: sidebar;
-}
-
-.site-footer {
-	grid-area: footer;
-}
-
-@import "no-sidebar";

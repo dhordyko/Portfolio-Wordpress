@@ -1,0 +1,30 @@
+// Buttons
+
+%menu-button {
+  font-size: 1.6rem;
+  font-weight: 400;
+  display: flex;
+  min-width: 190px;
+  min-height: 2rem;
+  width: 100%;
+  padding: 0.8rem 1.6rem;
+  justify-content: start;
+  align-items: center;
+  cursor: pointer;
+  color: $color__secondary-grey;
+  border-radius: 50px;
+  border: 1px solid $color__border-button;
+  line-height: 1.1;
+  transition: ease-in-out 0.3s;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  &:hover {
+    background: $color__gradient-blue;
+    font-weight: 700;
+    color: #fff;
+  }
+}

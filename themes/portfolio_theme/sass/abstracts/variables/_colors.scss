@@ -1,20 +1,28 @@
-$color__background-body: #fff;
-$color__background-screen: #f1f1f1;
-$color__background-hr: #ccc;
-$color__background-button: #e6e6e6;
-$color__background-pre: #eee;
-$color__background-ins: #fff9c0;
+/* Basic Colors*/
+$color__background-body: #0f0715;
+$color__dark: #090e12;
+$color__surface-card: #59168b;
+$color__primary-purple: #ad46ff;
+$color__highlight: #2a1454;
+$color__white: #ffffff;
+$color-accent: #f50013;
+$color__border-default: #8750f7;
+$color__secondary-grey: #d1d5dc;
+$color__border-button: $color__border-default;
 
-$color__text-screen: #21759b;
-$color__text-input: #666;
-$color__text-input-focus: #111;
-$color__link: #4169e1; //royalblue
-$color__link-visited: #800080; //purple
-$color__link-hover: #191970; //midnightblue
-$color__text-main: #404040;
+/* Elemnts Colors*/
+$color__link: #ad46ff;
+$color__link-visited: $color-accent;
+$color__link-hover: $color-accent;
+$color__text-input: #ffffff;
+$color__border-input: #8750f7;
+$color__text-input-focus: $color-accent;
+$color__background-screen: $color__background-body;
 
-$color__border-button: #ccc #ccc #bbb;
-$color__border-button-hover: #ccc #bbb #aaa;
-$color__border-button-focus: #aaa #bbb #bbb;
-$color__border-input: #ccc;
-$color__border-abbr: #666;
+/* Gradient Colors*/
+$color__gradient-blue: linear-gradient(90deg, #9810fa 0%, #4f39f6 100%);
+$color__gradient-main: linear-gradient(90deg, #c27aff 0%, #7c86ff 100%);
+$color__gradient-primary: linear-gradient(180deg, #7c46e9 0%, #2a1454 100%);
+
+// Shadows
+$box-shadow-default: 0 0 30px 0 rgba(135, 80, 247, 0.5);

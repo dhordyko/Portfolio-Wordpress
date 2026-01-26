@@ -12,4 +12,8 @@
 add_action('admin_menu', function () {
     remove_submenu_page('themes.php', 'widgets.php');
 });
+// Disable widgets menu item in admin dashboard
 
+
+
+// Declare Second Social Menu

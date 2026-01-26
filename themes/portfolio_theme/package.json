@@ -16,8 +16,15 @@
   "bugs": {
     "url": "https://github.com/Automattic/_s/issues"
   },
+  "dependencies": {
+    "swiper": "^12.0.3",
+    "aos": "^2.3.4",
+    "typed.js": "^2.1.1",
+    "isotope-layout": "^3.0.6",
+    "glightbox": "^3.3.1"
+  },
   "devDependencies": {
-    "@wordpress/scripts": "^19.2.2",
+    "@wordpress/scripts": "^31.3.0",
     "dir-archiver": "^1.1.1",
     "rtlcss": "^3.5.0"
   },
@@ -34,14 +41,22 @@
     "plugins": [],
     "map": false
   },
-"scripts": {
-  "watch": "sass --watch sass:./ --source-map --style=expanded",
-  "compile:css": "sass sass:./ --no-source-map --style=expanded && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
-  "compile:rtl": "rtlcss style.css style-rtl.css",
-  "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
-  "lint:js": "wp-scripts lint-js 'js/*.js'",
-  "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock"
-}
-
-
+  "scripts": {
+    "watch": "sass --watch sass:./ --source-map --style=expanded",
+    "build:js": "wp-scripts build js/custom.js --output-path=js/dist",
+    "build": "npm run build:js && npm run compile:css",
+    "compile:css": "npm run copy:fonts && sass sass:./ --no-source-map --style=expanded && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
+    "compile:rtl": "rtlcss style.css style-rtl.css",
+    "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
+    "lint:js": "wp-scripts lint-js 'js/*.js'",
+    "bundle": "dir-archiver --src . --dest ../_s.zip --exclude ...",
+    "copy:fonts": "cpx \"node_modules/@fontsource/inter/files/*\" assets/fonts/inter"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "glightbox": "^3.3.1",
+    "isotope-layout": "^3.0.6",
+    "swiper": "^12.0.3",
+    "typed.js": "^2.1.0"
+  }
 }
