@@ -5,46 +5,111 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.skill-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, rgba(156, 77, 255, 0.1), rgba(124, 70, 233, 0.1));
-  border: 2px solid #8750f7;
-  border-radius: 20px;
-  padding: 30px;
-  min-height: 200px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  color: inherit;
+/* Responsive mixin */
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 40px rgba(157, 77, 255, 0.35);
-    border-color: #9d4dff;
-  }
+$breakpoints: (
+	sm: 576px,
+	md: 768px,
+	lg: 1024px,
+	xl: 1280px,
+);
+// _mixins.scss
 
-  .skill-icon {
-    font-size: 4rem;
-    margin-bottom: 15px;
-    line-height: 1;
-  }
+@mixin respond($size) {
+	@if map-has-key($breakpoints, $size) {
+		@media (max-width: map-get($breakpoints, $size)) {
+			@content;
+		}
+	} @else {
+		@error "Unknown breakpoint: #{$size}";
+	}
+}
 
-  .skill-percentage {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #9d4dff;
-    margin-bottom: 10px;
-  }
+.card-wrapper {
+	display: flex;
+	flex-direction: column;
 
-  .skill-label {
-    font-size: 1rem;
-    color: #cccce4;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
+	flex-basis: 100%;
+	.skill-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 30%;
+		background: linear-gradient(
+			135deg,
+			rgba(156, 77, 255, 0.1),
+			rgba(124, 70, 233, 0.1)
+		);
+		border: 2px solid #8750f7;
+		border-radius: 20px;
+
+		@include respond(lg) {
+			min-height: 230px;
+			padding: 0;
+			max-width: 230px;
+			margin: 0 auto;
+			width: 100%;
+		}
+		@include respond(md) {
+			min-height: auto;
+			padding: 30%;
+		}
+		@include respond(sm) {
+			min-height: auto;
+			border-radius: 10px;
+		}
+		cursor: pointer;
+		transition: all 0.3s ease;
+		text-decoration: none;
+		color: inherit;
+
+		&:hover {
+			transform: translateY(-5px);
+
+			box-shadow: 0 0 25px #9d4dff;
+		}
+
+		.skill-icon {
+			display: flex;
+			height: fit-content;
+			align-items: center;
+			font-size: 4rem;
+			margin-bottom: 15px;
+			line-height: 1;
+			height: fit-content;
+			margin-bottom: 0;
+
+			@include respond(sm) {
+				margin-bottom: 0;
+				img {
+					max-width: 35px;
+				}
+			}
+		}
+
+		.skill-percentage {
+			font-size: 2.5rem;
+			@include respond(sm) {
+				font-size: 3.4vw;
+			}
+			font-weight: 700;
+			color: #ad46ff;
+			margin-bottom: 10px;
+		}
+	}
+	.skill-label {
+		font-size: 1.8rem;
+		color: #cccce4;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		margin-top: 20px;
+		@include respond(sm) {
+			margin-top: 5px;
+			font-size: 1.4rem;
+		}
+	}
 }
 
 .wp-block-create-block-blocks-portfolio {
@@ -52,10 +117,119 @@
 	color: #fff;
 	padding: 2px;
 }
-#glightbox-slider{
-	.gslide-media.gslide-image{
-		max-width: 200px;
-  		min-height: 500px;
+@include respond(lg) {
+	.glightbox-clean .gnext,
+	.glightbox-clean .gprev {
+		top: 5% !important;
+	}
+}
 
+#glightbox-slider {
+	align-items: start;
+	top: 5%;
+	.gslide {
+		height: 100vh;
+	}
+	.ginner-container {
+		display: flex;
+		flex-direction: column;
+	}
+	.gslide-media.gslide-image {
+		max-width: 200px;
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 32px;
+		img {
+			min-width: 100px;
+		}
+	}
+	.gslide-description {
+		max-width: 900px;
+		margin: 0 auto;
+		background: #330e4f;
+		background-image: url(../../imgs/popup-bg.svg);
+		border-radius: 16px;
+		width: 100%;
+		max-width: 1000px;
+		background-size: cover;
+		&::after {
+			content: "";
+			display: block;
+			position: absolute;
+			bottom: 0;
+			width: 100%;
+			left: 0;
+			right: 0;
+			background: #330e4f;
+			height: 32px;
+			@include respond(sm) {
+				display: none;
+			}
+		}
+		ul {
+			padding-left: 0;
+			margin-top: 15px;
+		}
+		@include respond(lg) {
+			border-radius: 24px;
+			max-width: 80%;
+			max-height: 65vh;
+			position: relative;
+			padding-bottom: 35px;
+		}
+		@include respond(md) {
+			max-width: 85% !important;
+			border-radius: 24px;
+			max-height: 65vh;
+			position: relative;
+			padding-bottom: 35px;
+		}
+		.gdesc-inner {
+			border-radius: 24px;
+			max-height: 55vh;
+			position: relative;
+			padding-bottom: 35px;
+			@include respond(md) {
+				padding: 2rem;
+			}
+			@include respond(sm) {
+				padding: 1.5rem;
+				padding-left: 0;
+				padding-right: 0;
+			}
+			.gslide-desc {
+				color: #ccced4;
+				font-family: inherit;
+				font-size: 1.8rem;
+
+				@include respond(lg) {
+					height: fit-content;
+				}
+				padding-bottom: 45px;
+				padding-left: 32px;
+				padding-right: 32px;
+				@include respond(lg) {
+					padding-right: 0;
+				}
+				@include respond(md) {
+					overflow-y: unset;
+					padding-left: 12px;
+					padding-right: 12px;
+					font-size: 2rem;
+				}
+			}
+			h4 {
+				text-align: center;
+				font-size: 3.2rem;
+				font-weight: 700;
+				background: linear-gradient(
+					90deg,
+					rgb(194, 122, 255) 0%,
+					rgb(124, 134, 255) 100%
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+			}
+		}
 	}
 }

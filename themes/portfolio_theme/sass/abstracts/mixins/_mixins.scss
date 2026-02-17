@@ -1,11 +1,32 @@
+@use 'sass:map';
+$breakpoints: (
+  sm: 576px,
+  md: 768px,
+  lg: 1024px,
+  xl: 1280px,
+);
+
 // Center block
 @mixin center-block {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 // Column width with margin
 @mixin column-width($numberColumns: 3) {
-	width: map-get($columns, $numberColumns) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
+  width: map-get($columns, $numberColumns) -
+    (($columns__margin * ($numberColumns - 1)) / $numberColumns);
+}
+
+//reposnsive mixins
+
+@mixin respond($size) {
+  @if map.has-key($breakpoints, $size) {
+    @media (max-width: map.get($breakpoints, $size)) {
+      @content;
+    }
+  } @else {
+    @error "Unknown breakpoint: #{$size}";
+  }
 }

@@ -35,6 +35,16 @@
   color: transparent;
 }
 
+/* Text Gradient */
+.has-text-gradient-color {
+  background: linear-gradient(180deg, #8750f7 0%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  background-clip: text;
+  color: transparent;
+}
+
 /* Gradient text variants */
 .has-gradient-blue-color.wp-block-heading,
 .has-main-gradient-color.wp-block-heading,

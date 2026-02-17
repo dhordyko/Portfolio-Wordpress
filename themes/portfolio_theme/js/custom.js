@@ -1,4 +1,3 @@
-console.log('custom.js loaded');
 /* =========================
    Vendor imports
 ========================= */
@@ -6,37 +5,53 @@ console.log('custom.js loaded');
 // Slider
 import Swiper from 'swiper';
 import 'swiper/css';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import Typed from 'typed.js';
-import Isotope from 'isotope-layout';
-import GLightbox from 'glightbox';
-import 'glightbox/dist/css/glightbox.css';
 
+import Typed from 'typed.js';
+import 'glightbox/dist/css/glightbox.css';
+import ScrollReveal from 'scrollreveal';
 // Expose libraries to window object
 window.Swiper = Swiper;
-window.AOS = AOS;
-window.Typed = Typed;
-window.Isotope = Isotope;
-window.GLightbox = GLightbox;
 
-document.addEventListener('DOMContentLoaded', () => {
-  GLightbox({ selector: '.glightbox-skill' });
-});
+window.Typed = Typed;
+
 /* =========================
    show/hide button
 ========================= */
-// show/hide button
-const upBtn = document.createElement('button');
-upBtn.innerText = '↑';
-upBtn.className = 'scroll-to-top';
-document.body.appendChild(upBtn);
 
-window.addEventListener('scroll', () => {
-  upBtn.style.opacity = window.scrollY > 300 ? '1' : '0';
+const upBtn = document.querySelector('#up-to-top');
+
+if (upBtn) {
+  window.addEventListener('scroll', () => {
+    upBtn.style.opacity = window.scrollY > 300 ? '1' : '0';
+  });
+
+  upBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+/* =========================
+   reveal on scroll
+========================= */
+const sr = ScrollReveal({
+  duration: 1500,
+  distance: '250px',
+  easing: 'ease-out',
+  reset: false,
 });
 
-// smooth scroll
-upBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+sr.reveal('.sr-up', { origin: 'bottom' });
+sr.reveal('.sr-left', { origin: 'left' });
+sr.reveal('.sr-right', { origin: 'right' });
+
+/* =========================
+   toggle click
+========================= */
+
+jQuery(function ($) {
+  // $ safely works here
+
+  $('.burger').on('click', function () {
+    $('header').toggleClass('is-open');
+    $(this).toggleClass('is-open');
+  });
 });

@@ -1,88 +1,130 @@
-import { __ } from '@wordpress/i18n';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl } from '@wordpress/components';
-import './editor.scss';
+import { __ } from "@wordpress/i18n";
+
+import {
+	useBlockProps,
+	InspectorControls,
+	MediaUpload,
+	MediaUploadCheck,
+} from "@wordpress/block-editor";
+import {
+	PanelBody,
+	TextControl,
+	Button,
+	TextareaControl,
+} from "@wordpress/components";
+import "./editor.scss";
 
 export default function Edit({ attributes, setAttributes, clientId }) {
-  const { skillIcon, skillPercentage, skillLabel, imageUrl, imageDescription } = attributes;
+	const {
+		skillIconId,
+		skillIconUrl,
+		skillPercentage,
+		skillLabel,
+		imageUrl,
+		imageDescription,
+	} = attributes;
 
-  const descId = `skill-desc-${clientId}`;
+	const descId = `skill-desc-${skillIconId}`;
 
-  const glightboxConfig = imageDescription
-    ? `title: ${skillLabel}; description: .${descId}; descPosition: right;`
-    : `title: ${skillLabel};`;
+	const glightboxConfig = imageDescription
+		? `title: ${skillLabel}; description: .${descId}; descPosition: right;`
+		: `title: ${skillLabel};`;
 
-  const linkProps = useBlockProps({
-    className: 'skill-card glightbox-skill',
-  });
+	// Root wrapper props (use once per root element)
+	const blockProps = useBlockProps({ className: "skill-card-editor" });
 
-  const wrapperProps = useBlockProps({
-    className: 'skill-card-editor',
-  });
+	return (
+		<>
+			<InspectorControls>
+				<PanelBody
+					title={__("Skill Settings", "blocks-portfolio")}
+					initialOpen={true}
+				>
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={(media) => {
+								setAttributes({
+									skillIconId: media?.id || 0,
+									skillIconUrl: media?.url || "",
+								});
+							}}
+							allowedTypes={["image"]}
+							value={skillIconId || 0}
+							render={({ open }) => (
+								<div>
+									<p className="components-base-control__label">
+										{__("Skill Icon", "blocks-portfolio")}
+									</p>
 
-  return (
-    <>
-      <InspectorControls>
-        <PanelBody title={__('Skill Settings', 'blocks-portfolio')} initialOpen={true}>
-          <TextControl
-            label={__('Skill Icon/Symbol', 'blocks-portfolio')}
-            value={skillIcon}
-            onChange={(value) => setAttributes({ skillIcon: value })}
-            placeholder={__('Enter emoji or icon', 'blocks-portfolio')}
-          />
-          <TextControl
-            label={__('Skill Percentage', 'blocks-portfolio')}
-            value={skillPercentage}
-            onChange={(value) => setAttributes({ skillPercentage: value })}
-            placeholder={__('92%', 'blocks-portfolio')}
-          />
-          <TextControl
-            label={__('Skill Label', 'blocks-portfolio')}
-            value={skillLabel}
-            onChange={(value) => setAttributes({ skillLabel: value })}
-            placeholder={__('Figma', 'blocks-portfolio')}
-          />
-          <TextControl
-            label={__('Popup Image URL (optional)', 'blocks-portfolio')}
-            value={imageUrl}
-            onChange={(value) => setAttributes({ imageUrl: value })}
-            placeholder={__('https://example.com/image.jpg', 'blocks-portfolio')}
-          />
-          <TextControl
-            label={__('Image Description (for Lightbox)', 'blocks-portfolio')}
-            value={imageDescription}
-            onChange={(value) => setAttributes({ imageDescription: value })}
-          />
-        </PanelBody>
-      </InspectorControls>
+									{skillIconUrl ? (
+										<div style={{ marginBottom: 10 }}>
+											<img
+												src={skillIconUrl}
+												alt=""
+												style={{
+													width: 60,
+													height: 60,
+													objectFit: "cover",
+													borderRadius: 8,
+												}}
+											/>
+										</div>
+									) : null}
 
-      {imageUrl ? (
-        <>
-          <a
-            {...linkProps}
-            href={imageUrl}                 // ✅ required
-            data-gallery="skill-gallery"
-            data-glightbox={glightboxConfig}
-            onClick={(e) => e.preventDefault()} // ✅ prevents navigating away in editor
-          >
-            <div className="skill-icon">{skillIcon}</div>
-            <div className="skill-percentage">{skillPercentage}</div>
-            <div className="skill-label">{skillLabel}</div>
-          </a>
+									<Button variant="secondary" onClick={open}>
+										{skillIconUrl
+											? __("Replace Image", "blocks-portfolio")
+											: __("Select Image", "blocks-portfolio")}
+									</Button>
 
-          {imageDescription && (
-            <div className={descId} style={{ display: 'none' }}>
-              {imageDescription}
-            </div>
-          )}
-        </>
-      ) : (
-        <div {...wrapperProps}>
-          <div className="skill-icon">{skillIcon}</div>
-          <div className="skill-percentage">{skillPercentage}</div>
-          <div className="skill-label">{skillLabel}</div>
-        </div>
-      )}
-    </>
-  );
+									{skillIconUrl ? (
+										<Button
+											variant="tertiary"
+											isDestructive
+											style={{ marginLeft: 8 }}
+											onClick={() =>
+												setAttributes({ skillIconId: 0, skillIconUrl: "" })
+											}
+										>
+											{__("Remove", "blocks-portfolio")}
+										</Button>
+									) : null}
+								</div>
+							)}
+						/>
+					</MediaUploadCheck>
+
+					<TextControl
+						label={__("Skill Label", "blocks-portfolio")}
+						value={skillLabel}
+						onChange={(value) => setAttributes({ skillLabel: value })}
+						placeholder={__("Figma", "blocks-portfolio")}
+					/>
+				</PanelBody>
+			</InspectorControls>
+
+			<div {...blockProps}>
+				<div class="card-wrapper">
+					<div className="skill-icon">
+						{skillIconUrl ? <img src={skillIconUrl} alt="" /> : null}
+					</div>
+				</div>
+				<div className="skill-label">{skillLabel}</div>
+				<TextareaControl
+					label={__("Image Description (for Lightbox)", "blocks-portfolio")}
+					value={imageDescription || ""}
+					onChange={(value) => setAttributes({ imageDescription: value })}
+					help={__(
+						"You can use basic HTML (e.g., <strong>, <em>, <a>) if needed.",
+						"blocks-portfolio",
+					)}
+				/>
+				{imageDescription ? (
+					<div className={descId} style={{ display: "none" }}>
+						{imageDescription}
+					</div>
+				) : null}
+			</div>
+		</>
+	);
 }

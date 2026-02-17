@@ -1,23 +1,86 @@
 .sticky {
-	display: block;
+  display: block;
 }
 
 .post,
 .page {
-	margin: 0 0 1.5em;
+  margin: 0 0 1.5em;
 }
 
 .updated:not(.published) {
-	display: none;
+  display: none;
 }
 
 .page-content,
 .entry-content,
 .entry-summary {
-	margin: 1.5em 0 0;
+  margin: 1.5em 0 0;
+  min-height: 1000px;
 }
 
 .page-links {
-	clear: both;
-	margin: 0 0 1.5em;
+  clear: both;
+  margin: 0 0 1.5em;
+}
+
+// Content Temaplate
+article.post {
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    max-width: 1240px;
+    min-height: 75px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #ad46ff;
+    margin-bottom: 35px;
+
+    @include respond(lg) {
+      .breadcrumbs {
+        display: none;
+      }
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      background: linear-gradient(180deg, #8750f7 0%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .breadcrumbs {
+      font-size: 2rem;
+
+      background: linear-gradient(180deg, #8750f7 0%, #fff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+
+      .home-link {
+        font-size: 1.6rem;
+
+        a {
+          color: #f50013;
+          -webkit-text-fill-color: #f50013;
+          text-decoration: none;
+
+          &:hover {
+            color: #8750f7;
+            -webkit-text-fill-color: #8750f7;
+          }
+        }
+      }
+    }
+  }
+}
+
+.scroll-to-top {
+  display: flex;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
 }

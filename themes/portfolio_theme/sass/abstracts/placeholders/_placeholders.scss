@@ -17,6 +17,11 @@
   line-height: 1.1;
   transition: ease-in-out 0.3s;
 
+  @include respond(md) {
+    font-size: 1.8rem;
+    min-height: 5rem;
+  }
+
   a {
     text-decoration: none;
     color: inherit;

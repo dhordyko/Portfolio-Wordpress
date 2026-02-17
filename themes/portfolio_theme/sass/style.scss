@@ -89,6 +89,10 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 --------------------------------------------- */
 @import 'plugins/jetpack/infinite-scroll';
 
+/* Contact Form 7
+--------------------------------------------- */
+@import 'plugins/contact-form/contact-form';
+
 /*--------------------------------------------------------------
 # Utilities
 --------------------------------------------------------------*/
@@ -106,10 +110,55 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import 'layouts/content-sidebar';
 
 /* src/scss/main.scss */
+@include respond(sm) {
+  body #page div.icon-holder {
+    min-height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+
+    svg {
+      width: 0.8em;
+    }
+  }
+}
 
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  scroll-behavior: smooth;
+
+  @include respond(xl) {
+    font-size: 55.5%;
+  }
+
+  @include respond(md) {
+    font-size: 40.5%;
+
+    &[single-postpage] {
+      font-size: 62.5%;
+
+      h2 {
+        font-size: 3.2rem;
+      }
+    }
+  }
+}
+
+#up-to-top {
+  display: flex;
+  position: fixed;
+  height: 60px;
+  width: 60px;
+  align-items: center;
+  background-image: url(./sass/imgs/up-button.png);
+  background-size: cover;
+  cursor: pointer;
+  bottom: 3.2rem;
+  z-index: 99;
+  right: 3.2rem;
+  border-radius: 50%;
+  border: 0.5px solid #ad46ff;
 }
 
 body {
@@ -122,9 +171,108 @@ body {
     Arial,
     sans-serif;
   background-image: url(./sass/imgs/bg.svg);
-  background-size: cover;
+  background-size: 100%;
   height: 100%;
   width: 100%;
-  background-repeat: no-repeat;
-  min-height: 3000px;
+  padding: 3.2rem;
+
+  @include respond(sm) {
+    padding: 1.5rem;
+  }
+}
+
+.m-xl-0 {
+  @include respond(xl) {
+    margin: 0 !important;
+  }
+}
+
+footer {
+  overflow: hidden;
+
+  .content-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    #note {
+      display: flex;
+      height: 300px;
+      align-items: center;
+
+      svg {
+        height: fit-content;
+
+        @include respond(sm) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+/* example */
+.reveal {
+  opacity: 0;
+}
+
+.animate__animated {
+  --animate-duration: 2s;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+div.alignfull {
+  width: 100%;
+}
+
+button.wp-block-accordion-heading__toggle {
+  height: 0;
+}
+
+.wp-block-accordion-item.is-open
+  > .wp-block-accordion-heading
+  .wp-block-accordion-heading__toggle-icon {
+  transform: none;
+
+  &::before {
+    transform: rotate(0deg);
+  }
+}
+
+.wp-block-kadence-spacer {
+  margin-bottom: 0 !important;
+}
+
+.wp-block-accordion-heading__toggle-icon {
+  color: transparent;
+
+  &::before {
+    content: '';
+    display: block;
+    background-image: url(./sass/imgs/up-button.png);
+    width: 45px;
+    height: 45px;
+    background-size: cover;
+    position: absolute;
+    transform: rotate(-180deg);
+    transition: transform 0.2s ease-in-out;
+    top: 20px;
+    right: 15px;
+    z-index: 999;
+  }
 }

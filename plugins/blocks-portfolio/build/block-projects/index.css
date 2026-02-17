@@ -9,8 +9,14 @@
 .skill-card-editor {
   padding: 20px;
 }
-.wp-block-create-block-blocks-portfolio {
-  border: 1px dotted #f00;
+.skill-card-editor .skill-percentage {
+  padding-top: 25px;
+  font-weight: 700;
+  font-size: 35px;
+  text-align: center;
+}
+.skill-card-editor .card-wrapper, .skill-card-editor .skill-label {
+  margin-bottom: 24px;
 }
 
 /*# sourceMappingURL=index.css.map*/

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name: Portfolio General
  * Description: Core Code for Portfolio Site
@@ -14,6 +15,7 @@ add_action('admin_menu', function () {
 });
 // Disable widgets menu item in admin dashboard
 
+add_filter('show_admin_bar', '__return_false');
 
 
 // Declare Second Social Menu

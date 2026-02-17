@@ -1,22 +1,86 @@
+#persona-wrapper {
+  &::before {
+    content: '';
+    background-image: url(./sass/imgs/wordpress-logo.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 650px;
+    height: 650px;
+
+    @include respond(md) {
+      width: 100%;
+      max-width: 500px;
+    }
+  }
+
+  #persona-image {
+    position: relative;
+
+    &::after {
+      content: '';
+      background-image: url(./sass/imgs/note.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      display: block;
+      position: absolute;
+      right: -5%;
+      bottom: -100px;
+      z-index: 999;
+      width: 400px;
+      height: 150px;
+
+      @include respond(xl) {
+        position: absolute;
+        right: -5%;
+        bottom: -100px;
+        z-index: 999;
+        width: 300px;
+        height: 150px;
+      }
+
+      @include respond(lg) {
+        position: absolute;
+        right: 5%;
+        bottom: -80px;
+        z-index: 999;
+        width: 450px;
+        height: 150px;
+      }
+
+      @include respond(md) {
+        right: 5%;
+        bottom: -80px;
+        z-index: 999;
+        width: 60%;
+        height: 150px;
+      }
+
+      @include respond(sm) {
+        right: 5%;
+        bottom: -80px;
+        z-index: 999;
+        width: 73vw;
+        height: 34vw;
+      }
+    }
+  }
+}
+
 main#primary {
   width: calc(100% - 370px);
   margin-left: auto;
   overflow: hidden;
 
-  &::before {
-    content: url(./sass/imgs/wordpress-logo.svg);
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 0;
+  @include respond(xl) {
+    width: calc(100% - 270px);
   }
 
-  &::after {
-    content: url(./sass/imgs/note.svg);
-    display: block;
-    position: absolute;
-    right: 0;
-    top: 300px;
+  @include respond(lg) {
+    width: 100%;
   }
 }
 

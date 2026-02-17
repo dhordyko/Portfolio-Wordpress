@@ -12,10 +12,14 @@
 		"html": false
 	},
 	"attributes": {
-		"skillIcon": {
+		"skillIconUrl": { 
 			"type": "string",
-			"default": "✨"
-		},
+			 "default": ""
+			 },
+		"skillIconId": { 
+			"type": "number",
+			"default": 0
+		 },
 		"skillPercentage": {
 			"type": "string",
 			"default": "92%"

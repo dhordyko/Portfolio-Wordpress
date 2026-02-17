@@ -49,6 +49,14 @@
   color: transparent;
 }
 
+.has-text-gradient-color {
+  background: linear-gradient(180deg, #8750f7 0%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
 .has-gradient-blue-color.wp-block-heading,
 .has-main-gradient-color.wp-block-heading,
 .has-primary-gradient-gradient.wp-block-heading {
@@ -64,6 +72,20 @@
   background-clip: unset;
   -webkit-background-clip: unset;
   -webkit-text-fill-color: unset;
-  color: white;
+  color: #fff;
   border: none;
+}
+
+/* Padding and Margin  */
+.m-r-0 > div {
+  margin-right: 0 !important;
+}
+
+.m-l-0 > div {
+  margin-left: 0 !important;
+}
+
+.m-0,
+.m-0 > div {
+  margin: 0 !important;
 }

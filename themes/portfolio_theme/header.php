@@ -12,7 +12,7 @@
 
 ?>
 <!doctype html>
-<html <?php language_attributes(); ?>>
+<html <?php language_attributes(); ?> <?php echo is_single() ? 'single-postpage' : ''; ?>>
 
 <head>
 	<meta charset="<?php bloginfo('charset'); ?>">
@@ -22,24 +22,54 @@
 	<?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> data-aos-easing="ease-in-out" data-aos-duration="600" data-aos-delay="0">
+	<a id="up-to-top" class="">
+		<span class="icon-holder"></span>
+	</a>
 	<?php wp_body_open(); ?>
 	<div id="page" class="site">
 		<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e('Skip to content', 'portfolio_theme'); ?></a>
+		<div class="toggle-btn">
+			<button class="burger" aria-label="Toggle menu">
+				<span class="burger__bar"></span>
+				<span class="burger__bar"></span>
+				<span class="burger__bar"></span>
+			</button>
 
-		<header id="masthead" class="site-header">
+
+		</div>
+		<header id="masthead" class="site-header <?php echo is_front_page() ? 'front-page' : ''; ?> <?php echo is_single() ? 'single-postpage' : ''; ?>">
+
+			<?php
+			if (!is_front_page()) : ?>
+				<a class="home" href="/">
+					<svg width="20" height="20" viewBox="0 0 50 50" fill="#f50013" xmlns="http://www.w3.org/2000/svg">
+						<path d="M20.3125 45.3126V34.3595C20.3125 33.5939 21.0938 32.8126 21.875 32.8126H28.125C28.9063 32.8126 29.6875 33.5939 29.6875 34.3751V45.3126C29.6875 45.727 29.8521 46.1244 30.1451 46.4175C30.4382 46.7105 30.8356 46.8751 31.25 46.8751H43.75C44.1644 46.8751 44.5618 46.7105 44.8549 46.4175C45.1479 46.1244 45.3125 45.727 45.3125 45.3126V23.4376C45.3129 23.2323 45.2728 23.0289 45.1945 22.8391C45.1162 22.6493 45.0013 22.4767 44.8563 22.3314L40.625 18.1032V7.81261C40.625 7.39821 40.4604 7.00078 40.1674 6.70775C39.8743 6.41473 39.4769 6.25011 39.0625 6.25011H35.9375C35.5231 6.25011 35.1257 6.41473 34.8326 6.70775C34.5396 7.00078 34.375 7.39821 34.375 7.81261V11.8532L26.1063 3.58136C25.9611 3.43585 25.7887 3.3204 25.5989 3.24163C25.409 3.16286 25.2055 3.12231 25 3.12231C24.7945 3.12231 24.591 3.16286 24.4011 3.24163C24.2113 3.3204 24.0389 3.43585 23.8938 3.58136L5.14375 22.3314C4.99875 22.4767 4.88382 22.6493 4.80553 22.8391C4.72724 23.0289 4.68714 23.2323 4.6875 23.4376V45.3126C4.6875 45.727 4.85212 46.1244 5.14515 46.4175C5.43817 46.7105 5.8356 46.8751 6.25 46.8751H18.75C19.1644 46.8751 19.5618 46.7105 19.8549 46.4175C20.1479 46.1244 20.3125 45.727 20.3125 45.3126Z" fill="white" />
+					</svg>
+				</a>
+			<?php endif; ?>
+
+			<nav id="site-navigation" class="main-navigation ">
 
 
-			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e('Primary Menu', 'portfolio_theme'); ?></button>
 				<?php
-				wp_nav_menu(
-					array(
-						'theme_location' => 'menu-1',
-						'menu_id'        => 'primary-menu',
-					)
-				);
+				if (is_front_page()) {
+					wp_nav_menu(
+						array(
+							'theme_location' => 'menu-1',
+							'menu_id'        => 'primary-menu',
+						)
+					);
+				} else {
+					echo '<div class="related-projects">';
+					echo '<h4 class="has-text-gradient-color">Related Projects</h4>';
+					echo do_shortcode('[related_posts]');
+					echo '</div>';
+				}
 				?>
+
+
+
 				<div class="socials">
 					<a class="github" href="https://www.linkedin.com/in/dmytro-hordiyenko-0b4115232/" target="_blank" rel="noopener noreferrer"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<g clip-path="url(#clip0_2045_396)">

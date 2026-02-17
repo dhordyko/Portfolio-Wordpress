@@ -41,9 +41,13 @@ return array(
 			'html' => false
 		),
 		'attributes' => array(
-			'skillIcon' => array(
+			'skillIconUrl' => array(
 				'type' => 'string',
-				'default' => '✨'
+				'default' => ''
+			),
+			'skillIconId' => array(
+				'type' => 'number',
+				'default' => 0
 			),
 			'skillPercentage' => array(
 				'type' => 'string',

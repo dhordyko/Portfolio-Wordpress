@@ -8,7 +8,7 @@
   \************************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blocks-portfolio/block-skill","version":"0.1.0","title":"Skill Card","category":"widgets","icon":"star-filled","description":"Display a skill card with icon, percentage, and label with lightbox popup.","example":{},"supports":{"html":false},"attributes":{"skillIcon":{"type":"string","default":"✨"},"skillPercentage":{"type":"string","default":"92%"},"skillLabel":{"type":"string","default":"Figma"},"imageUrl":{"type":"string","default":""},"imageDescription":{"type":"string","default":""}},"textdomain":"blocks-portfolio","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"blocks-portfolio/block-skill","version":"0.1.0","title":"Skill Card","category":"widgets","icon":"star-filled","description":"Display a skill card with icon, percentage, and label with lightbox popup.","example":{},"supports":{"html":false},"attributes":{"skillIconUrl":{"type":"string","default":""},"skillIconId":{"type":"number","default":0},"skillPercentage":{"type":"string","default":"92%"},"skillLabel":{"type":"string","default":"Figma"},"imageUrl":{"type":"string","default":""},"imageDescription":{"type":"string","default":""}},"textdomain":"blocks-portfolio","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
 
 /***/ },
 
@@ -42,99 +42,110 @@ function Edit({
   clientId
 }) {
   const {
-    skillIcon,
+    skillIconId,
+    skillIconUrl,
     skillPercentage,
     skillLabel,
     imageUrl,
     imageDescription
   } = attributes;
-  const descId = `skill-desc-${clientId}`;
+  const descId = `skill-desc-${skillIconId}`;
   const glightboxConfig = imageDescription ? `title: ${skillLabel}; description: .${descId}; descPosition: right;` : `title: ${skillLabel};`;
-  const linkProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: 'skill-card glightbox-skill'
-  });
-  const wrapperProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
-    className: 'skill-card-editor'
+
+  // Root wrapper props (use once per root element)
+  const blockProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)({
+    className: "skill-card-editor"
   });
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.PanelBody, {
-        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Skill Settings', 'blocks-portfolio'),
+        title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Skill Settings", "blocks-portfolio"),
         initialOpen: true,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Skill Icon/Symbol', 'blocks-portfolio'),
-          value: skillIcon,
-          onChange: value => setAttributes({
-            skillIcon: value
-          }),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Enter emoji or icon', 'blocks-portfolio')
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUploadCheck, {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.MediaUpload, {
+            onSelect: media => {
+              setAttributes({
+                skillIconId: media?.id || 0,
+                skillIconUrl: media?.url || ""
+              });
+            },
+            allowedTypes: ["image"],
+            value: skillIconId || 0,
+            render: ({
+              open
+            }) => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                className: "components-base-control__label",
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Skill Icon", "blocks-portfolio")
+              }), skillIconUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                style: {
+                  marginBottom: 10
+                },
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                  src: skillIconUrl,
+                  alt: "",
+                  style: {
+                    width: 60,
+                    height: 60,
+                    objectFit: "cover",
+                    borderRadius: 8
+                  }
+                })
+              }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "secondary",
+                onClick: open,
+                children: skillIconUrl ? (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Replace Image", "blocks-portfolio") : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Select Image", "blocks-portfolio")
+              }), skillIconUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.Button, {
+                variant: "tertiary",
+                isDestructive: true,
+                style: {
+                  marginLeft: 8
+                },
+                onClick: () => setAttributes({
+                  skillIconId: 0,
+                  skillIconUrl: ""
+                }),
+                children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Remove", "blocks-portfolio")
+              }) : null]
+            })
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Skill Percentage', 'blocks-portfolio'),
-          value: skillPercentage,
-          onChange: value => setAttributes({
-            skillPercentage: value
-          }),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('92%', 'blocks-portfolio')
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Skill Label', 'blocks-portfolio'),
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Skill Label", "blocks-portfolio"),
           value: skillLabel,
           onChange: value => setAttributes({
             skillLabel: value
           }),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Figma', 'blocks-portfolio')
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Popup Image URL (optional)', 'blocks-portfolio'),
-          value: imageUrl,
-          onChange: value => setAttributes({
-            imageUrl: value
-          }),
-          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('https://example.com/image.jpg', 'blocks-portfolio')
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextControl, {
-          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Image Description (for Lightbox)', 'blocks-portfolio'),
-          value: imageDescription,
-          onChange: value => setAttributes({
-            imageDescription: value
-          })
+          placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Figma", "blocks-portfolio")
         })]
       })
-    }), imageUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
-        ...linkProps,
-        href: imageUrl // ✅ required
-        ,
-        "data-gallery": "skill-gallery",
-        "data-glightbox": glightboxConfig,
-        onClick: e => e.preventDefault() // ✅ prevents navigating away in editor
-        ,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "skill-icon",
-          children: skillIcon
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "skill-percentage",
-          children: skillPercentage
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "skill-label",
-          children: skillLabel
-        })]
-      }), imageDescription && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        className: descId,
-        style: {
-          display: 'none'
-        },
-        children: imageDescription
-      })]
-    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-      ...wrapperProps,
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      ...blockProps,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        className: "skill-icon",
-        children: skillIcon
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-        className: "skill-percentage",
-        children: skillPercentage
+        class: "card-wrapper",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "skill-icon",
+          children: skillIconUrl ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+            src: skillIconUrl,
+            alt: ""
+          }) : null
+        })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "skill-label",
         children: skillLabel
-      })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.TextareaControl, {
+        label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("Image Description (for Lightbox)", "blocks-portfolio"),
+        value: imageDescription || "",
+        onChange: value => setAttributes({
+          imageDescription: value
+        }),
+        help: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)("You can use basic HTML (e.g., <strong>, <em>, <a>) if needed.", "blocks-portfolio")
+      }), imageDescription ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: descId,
+        style: {
+          display: "none"
+        },
+        children: imageDescription
+      }) : null]
     })]
   });
 }
@@ -205,52 +216,54 @@ function save({
   clientId
 }) {
   const {
-    skillIcon,
+    skillIconUrl,
     skillPercentage,
     skillLabel,
-    imageUrl,
+    skillIconId,
     imageDescription
   } = attributes;
-  if (imageUrl) {
-    const descId = `skill-desc-${clientId}`;
+  if (skillIconUrl) {
+    const descId = `skill-desc-${skillIconId}`;
     const glightboxConfig = imageDescription ? `title: ${skillLabel}; description: .${descId}; descPosition: right;` : `title: ${skillLabel};`;
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
-        ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
-          className: 'skill-card glightbox-skill'
-        }),
-        href: imageUrl,
-        "data-gallery": "skill-gallery",
-        "data-glightbox": glightboxConfig,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "skill-icon",
-          children: skillIcon
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-          className: "skill-percentage",
-          children: skillPercentage
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        class: "card-wrapper",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+          ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
+            className: "skill-card glightbox-skill"
+          }),
+          href: skillIconUrl,
+          "data-gallery": "skill-gallery",
+          "data-glightbox": glightboxConfig,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "skill-icon",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+              src: skillIconUrl,
+              alt: ""
+            })
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
           className: "skill-label",
           children: skillLabel
+        }), imageDescription && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: descId,
+          style: {
+            display: "none"
+          },
+          dangerouslySetInnerHTML: {
+            __html: imageDescription
+          }
         })]
-      }), imageDescription && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-        className: descId,
-        style: {
-          display: 'none'
-        },
-        children: imageDescription
-      })]
+      })
     });
   }
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
     ..._wordpress_block_editor__WEBPACK_IMPORTED_MODULE_0__.useBlockProps.save({
-      className: 'skill-card-editor'
+      className: "skill-card-editor"
     }),
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "skill-icon",
       children: skillIcon
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-      className: "skill-percentage",
-      children: skillPercentage
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "skill-label",
       children: skillLabel

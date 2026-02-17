@@ -1,0 +1,92 @@
+form.wpcf7-form {
+  .cf7-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    // @include respond(lg) {
+    //   justify-content: center;
+    // }
+
+    .cf7-field:nth-child(1),
+    .cf7-field:nth-child(2),
+    .cf7-field:nth-child(3),
+    .cf7-field:nth-child(4) {
+      display: block;
+      width: 45%;
+
+      span {
+        width: 100%;
+        display: block;
+
+        input {
+          width: 100%;
+          min-height: 50px;
+          background: #0f0715;
+          border-radius: 8px;
+          padding: 0 16px;
+          font-size: 1.6rem;
+        }
+      }
+    }
+
+    .cf7-full {
+      width: 92%;
+
+      textarea {
+        background: #0f0715;
+        border: 1px solid #8750f7;
+        padding: 0 16px;
+        border-radius: 8px;
+        font-size: 1.6rem;
+        padding-top: 8px;
+      }
+    }
+
+    .cf7-actions {
+      input {
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(90deg, #9810fa 0%, #4f39f6 100%);
+        box-shadow:
+          0 10px 15px -3px rgba(173, 70, 255, 0.25),
+          0 4px 6px -4px rgba(173, 70, 255, 0.25);
+        color: #ccced4;
+        border: none;
+        width: 100%;
+        max-width: 150px;
+        padding: 0;
+        border-radius: 50px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        transition: ease-in-out 0.3s;
+        cursor: pointer;
+
+        @include respond(md) {
+          font-size: 1.8rem;
+        }
+
+        &:hover {
+          background: #0f0715;
+          border: 1px solid #9810fa;
+        }
+      }
+    }
+
+    .wpcf7-response-output {
+      border-color: #9810fa;
+    }
+  }
+
+  .wpcf7-response-output {
+    border-color: #dc3232 !important;
+    color: #d1d5dc;
+    font-size: 1.6rem;
+  }
+
+  .wpcf7-spinner {
+    margin-top: 24px;
+  }
+}

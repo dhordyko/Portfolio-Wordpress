@@ -1,19 +1,234 @@
-#masthead {
-  display: flex;
+// toggle button
+#page .toggle-btn {
+  display: none;
+  z-index: 999;
 
+  @include respond(lg) {
+    & {
+      display: flex;
+      top: 3.2rem;
+      margin-left: auto;
+      position: fixed;
+      right: 3.2rem;
+      z-index: 999;
+      width: 50px;
+      height: 50px;
+      background: $color__surface-card;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid $color__link;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .burger {
+      background: transparent;
+      height: 25px;
+      width: 25px;
+      border: none;
+      padding: 0;
+
+      svg {
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .burger {
+      width: 30px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .burger__bar {
+      height: 3px;
+      width: 100%;
+      background: white;
+      border-radius: 2px;
+      transition:
+        transform 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    /* OPEN STATE */
+
+    .burger.is-open .burger__bar:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .burger.is-open .burger__bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .burger.is-open .burger__bar:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+  }
+}
+
+#masthead {
+  //display: flex;
   flex-direction: column;
   position: fixed;
-  top: 10%;
+  top: 5%;
   left: 50px;
   bottom: 0;
   width: 300px;
   overflow-y: auto;
   z-index: 997;
   padding: 0 15px;
+  padding-top: 15px;
   justify-content: start;
   transition: 0.3s ease-in-out;
 
+  .close-btn {
+    opacity: 0;
+  }
+
+  @include respond(xl) {
+    left: 15px;
+    width: 270px;
+  }
+
+  @include respond(lg) {
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.35s ease-in-out;
+    will-change: transform;
+    pointer-events: none;
+    background: $color__background-body;
+    border: 1px solid rgba(173, 70, 255, 0.5);
+    box-shadow: $box-shadow-default;
+    max-width: 320px;
+
+    &.is-open {
+      transform: translateX(0);
+      pointer-events: auto;
+
+      @include respond(sm) {
+        padding-top: 60px;
+      }
+
+      nav#site-navigation {
+        display: flex;
+        width: 100%;
+        border: none;
+        box-shadow: unset;
+        min-height: auto;
+        padding: 0;
+
+        ul {
+          max-width: 90%;
+          margin-top: 35px;
+        }
+
+        .close-btn {
+          display: flex;
+          justify-content: end;
+          opacity: 1;
+        }
+
+        button.close {
+          opacity: 1;
+          background: transparent;
+          display: flex;
+          justify-content: end;
+          width: 35px;
+          height: 35px;
+
+          path {
+            fill: $color-accent;
+            opacity: 0.7;
+          }
+        }
+
+        .socials {
+          margin-top: 35px;
+        }
+      }
+    }
+  }
+
+  @include respond(md) {
+    max-width: 100%;
+  }
+  //Single post Header
+  .related-projects {
+    margin-top: 50px;
+
+    ul.nav-menu {
+      margin-top: 20px;
+      margin-left: 0;
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      li {
+        @extend %menu-button;
+      }
+    }
+  }
+  // home icon
+  .home {
+    position: absolute;
+    top: 32px;
+    left: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #9d4dff;
+    transition: ease-in-out 0.3s;
+
+    &:hover {
+      background: $color__gradient-blue;
+
+      svg path {
+        fill: #fff;
+      }
+    }
+
+    svg path {
+      fill: #f50013;
+    }
+  }
   // Content Navigation layout styles
+  &.single-postpage {
+    @include respond(lg) {
+      .home {
+        position: relative;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    nav#site-navigation {
+      min-height: 450px;
+
+      .related-projects {
+        margin-top: 30px;
+      }
+    }
+  }
+
   #site-navigation {
     display: flex;
     background-color: $color__background-body;
@@ -25,6 +240,42 @@
     padding: 35px 20px;
     flex-direction: column;
     justify-content: space-between;
+
+    li {
+      position: relative;
+      min-height: 35px !important;
+
+      a {
+        width: 93%;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        align-items: center;
+
+        right: 0;
+      }
+    }
+    // Single Post Navigation
+    .bp-related-posts-list {
+      margin-left: 0;
+      padding-left: 0;
+      margin-top: 24px;
+
+      li {
+        @extend %menu-button;
+        margin-bottom: 16px;
+      }
+    }
+
+    @include respond(lg) {
+      display: flex;
+      width: 100%;
+      border: none;
+      box-shadow: unset;
+      min-height: auto;
+      padding: 0;
+    }
+
     /* stylelint-disable-next-line rule-empty-line-before */
     #primary-menu {
       margin-left: 0;
@@ -32,7 +283,7 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 2rem;
 
       .menu-item {
         @extend %menu-button;
@@ -61,10 +312,8 @@
         }
       }
     }
-  }
 
-  // Toggel Button styles
-  .menu-toggle {
-    display: none;
+    @include respond(lg) {
+    }
   }
 }

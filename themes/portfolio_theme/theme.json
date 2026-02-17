@@ -37,6 +37,12 @@
           "slug": "primary-gradient",
           "color": "#99a4af"
         
+        },
+                 {
+          "name": "Text Gradient",
+          "slug": "text-gradient",
+          "color": "#99a5af"
+        
         }
       ],
 
@@ -55,6 +61,11 @@
           "name": "Primary Gradient",
           "slug": "primary-gradient-2",
           "gradient": "linear-gradient(180deg, #7C46E9 0%, #2A1454 100%)"
+        },
+         {
+          "name": "Text Gradient",
+          "slug": "text-gradient",
+          "gradient": "linear-gradient(180deg, #8750F7 0%, #FFF 100%)"
         }
       ]
     },
@@ -70,10 +81,10 @@
       ],
       "fontSizes": [
         { "name": "XS", "slug": "xs", "size": "0.875rem" },
-        { "name": "S", "slug": "s", "size": "1rem" },
+        { "name": "S", "slug": "s", "size": "1.4rem" },
         { "name": "M", "slug": "m", "size": "1.6rem" },
         { "name": "L", "slug": "l", "size": "1.25rem" },
-        { "name": "XL", "slug": "xl", "size": "1.6rem" },
+        { "name": "XL", "slug": "xl", "size": "1.8rem" },
         { "name": "2XL", "slug": "2xl", "size": "2rem" },
         { "name": "3XL", "slug": "3xl", "size": "3rem" },
         { "name": "4XL", "slug": "4xl", "size": "4rem" },

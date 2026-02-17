@@ -17,7 +17,11 @@
 	"dependencies": {
 		"@wordpress/block-editor": "latest",
 		"@wordpress/blocks": "latest",
-		"@wordpress/i18n": "latest"
+		"@wordpress/editor": "^14.38.0",
+		"@wordpress/i18n": "latest",
+		"aos": "^2.3.4",
+		"imagesloaded": "^5.0.0",
+		"isotope-layout": "^3.0.6"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^31.3.0"
