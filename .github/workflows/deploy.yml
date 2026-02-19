@@ -30,7 +30,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          local-dir: themes/portfolio_theme/
+          local-dir: ./themes/portfolio_theme/
           server-dir: htdocs/wp-content/themes/portfolio_theme/
           state-name: .ftp-deploy-theme-state.json
           method: sync
