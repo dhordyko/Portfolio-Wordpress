@@ -10,6 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Debug theme path
+        run: |
+          pwd
+          ls -la
+          ls -la themes || true
+          ls -la themes/portfolio_theme || true
+          find themes -maxdepth 2 -type d || true
       - name: Checkout repository
         uses: actions/checkout@v3
 
