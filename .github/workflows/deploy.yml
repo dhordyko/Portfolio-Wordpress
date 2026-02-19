@@ -1,4 +1,4 @@
-name: Deploy Theme and Plugins to Server
+name: Deploy Theme to Server (Changed Files Only)
 
 on:
   push:
@@ -13,7 +13,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Upload theme
+      # Restore previous FTP deploy state (so it can detect changes)
+      - name: Restore FTP deploy state
+        uses: actions/cache@v3
+        with:
+          path: .ftp-deploy-theme-state.json
+          key: ftp-theme-state-${{ github.ref }}
+          restore-keys: |
+            ftp-theme-state-
+
+      # Upload theme (only changed files)
       - name: Upload theme via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -21,26 +30,18 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
-          local-dir: ./themes/portfolio_theme/
+          local-dir: ./portfolio_theme/
           server-dir: /htdocs/srv/wordpress/wp-content/themes/portfolio_theme/
           state-name: .ftp-deploy-theme-state.json
+          method: sync
           exclude: |
             **/.git*
             **/.DS_Store
             **/node_modules/**
 
-      # Upload plugins
-      # - name: Upload plugins via FTP
-      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      #   with:
-      #     server: ${{ secrets.SERVER_HOST }}
-      #     username: ${{ secrets.SERVER_USER }}
-      #     password: ${{ secrets.SERVER_SSH_PASSWORD }}
-      #     port: ${{ secrets.SSH_PORT }}
-      #     local-dir: ./plugins/
-      #     server-dir: /htdocs/srv/wordpress/wp-content/plugins/
-      #     state-name: .ftp-deploy-plugins-state.json
-      #     exclude: |
-      #       **/.git*
-      #       **/.DS_Store
-      #       **/node_modules/**
+      # Save updated state for next run
+      - name: Save FTP deploy state
+        uses: actions/cache@v3
+        with:
+          path: .ftp-deploy-theme-state.json
+          key: ftp-theme-state-${{ github.ref }}
