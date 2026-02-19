@@ -127,7 +127,7 @@ html {
   font-size: 62.5%;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  background: red;
+  background: green;
 
   @include respond(xl) {
     font-size: 55.5%;
